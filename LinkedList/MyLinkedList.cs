@@ -8,14 +8,12 @@
         // * there is no list 
         // add to middle
         // sort the list
-        private int NodeLength = 0;
         private Node _head;
         public Node Add(string payload)
         {
-            if(_head == null)
+            if (_head == null)
             {
                 _head = new Node(payload);
-                NodeLength++;
                 return _head;
             }
             Node current = _head;
@@ -24,7 +22,6 @@
                 current = current.Next;
             }
             current.Next = new Node(payload);
-            NodeLength++;
 
             return _head;
         }
@@ -43,14 +40,13 @@
                 {
                     current = current.Next;
                     isRemoved = true;
-                    NodeLength--;
                     continue;
                 }
                 current = current.Next;
             }
             return isRemoved;
         }
-        
+
         public bool Contains(string item)
         {
             bool matchFound = false;
@@ -74,13 +70,12 @@
         public string PrintAllNodes()
         {
             string nodeList = "";
-            string[] strings = new string[NodeLength];
+            string[] strings = new string[0];
             Node current = _head;
-            int index = 0;
             while (current != null)
             {
-                strings[index] = current.Data;
-                index++;
+                Array.Resize(ref strings, strings.Length + 1);
+                strings[strings.Length - 1] = current.Data;
                 current = current.Next;
             }
 
@@ -107,7 +102,7 @@
                 Console.WriteLine(current.Data);
                 current = current.Next;
             }
-            
+
             //Console.WriteLine(current.Data);
         }
     }
